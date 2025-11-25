@@ -25,7 +25,6 @@ const authController = {
       const { email, password } = req.body;
       const user = await UserModel.findByEmail(email);
       if (!user) return res.status(404).json({ error: "User not found" });
-      console.log(user.password);
       const isValid = await verifyPassword(user.password, password);
       if (!isValid)
         return res.status(401).json({ error: "Invalid credentials" });
